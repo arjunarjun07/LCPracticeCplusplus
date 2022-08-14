@@ -9,6 +9,7 @@ using namespace std;
 
 class Arrays
 {
+public:
     vector<int> twoSum(vector<int>& nums, int target);
 
     vector<int> TwoSumModified(vector<int>& nums, int target);
@@ -30,4 +31,6 @@ class Arrays
     int removeElement(vector<int>& nums, int val);
 
     int searchInsert(vector<int>& nums, int target);
+
+    int GetFirstRecurringElement(vector<int> nums);
 };

@@ -370,3 +370,38 @@ int Arrays::searchInsert(vector<int>& nums, int target) {
 
     return (nums[b_index] == target) ? b_index : (nums[e_index] == target) ? e_index : b_index;
 }
+
+int Arrays::GetFirstRecurringElement(vector<int> nums)
+{
+    /*
+    *   Array = [2,5,1,2,3,5,1,2,4]
+    *   return 2
+    */
+
+    int first_recurr_elem = 0;
+
+    map<int, int> elem_and_indx;
+
+    if (nums.size() == 0 || nums.size() == 1)
+    {
+        return 0;
+    }
+
+
+    for (int i = 0; i < nums.size(); i++)
+    {
+        if (elem_and_indx.find(nums[i]) != elem_and_indx.end())
+        {
+            first_recurr_elem = nums[i];
+            break;
+        }
+        else
+        {
+            elem_and_indx.insert(pair<int, int>(nums[i], i));
+        }
+
+    }
+
+
+    return first_recurr_elem;
+}

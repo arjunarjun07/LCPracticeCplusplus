@@ -568,19 +568,3 @@ void print(int x)
 {
     cout << "x=" << x << endl;
 }
-
-int main()
-{
-    try
-    {
-        int test = 7;
-
-        Solution s;
-
-        vector<int> nums1 = { -3, 4, 3, 90 };
-    }
-    catch (exception e)
-    {
-        cout << e.what();
-    }
-}
