@@ -26,6 +26,15 @@
     <Filter Include="Unordered">
       <UniqueIdentifier>{421aca49-bf65-46c5-8492-667edc469b36}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SLL">
+      <UniqueIdentifier>{f515bad5-6b6e-4dcc-8393-722d009fe960}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SLL\Header">
+      <UniqueIdentifier>{e2a8da07-7612-475a-a597-47637608fa50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SLL\Source">
+      <UniqueIdentifier>{a71311e5-e0cb-4622-bf7c-b797150e7087}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Leet.cpp">
@@ -40,6 +49,9 @@
     <ClCompile Include="Source.cpp">
       <Filter>Unordered</Filter>
     </ClCompile>
+    <ClCompile Include="SLL.cpp">
+      <Filter>SLL\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arrays.h">
@@ -47,6 +59,9 @@
     </ClInclude>
     <ClInclude Include="Recursion.h">
       <Filter>Recursion\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SLL.h">
+      <Filter>SLL\Header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
