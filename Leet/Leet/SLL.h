@@ -313,4 +313,40 @@ public:
 
         delete(node);
     }
+
+    Node<T>* rotateSLL(int k)
+    {
+        if (!head || !head->next)
+        {
+            return head;
+        }
+
+        int len = length();
+
+        if (k > len)
+        {
+            k = k % len;
+        }
+
+        for (; k > 0; k--)
+        {
+            Node<T>* h = head;
+            Node<T>* tail = nullptr;
+            Node<T>* node_before_tail = nullptr;
+
+            while (h)
+            {
+                node_before_tail = tail;
+                tail = h;
+                h = h->next;
+            }
+
+            node_before_tail->next = nullptr;
+            tail->next = head;
+            head = tail;
+
+        }
+
+        return head;
+    }
 };
