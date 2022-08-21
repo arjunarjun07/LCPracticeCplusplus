@@ -349,4 +349,33 @@ public:
 
         return head;
     }
+
+    Node<T>* deleteDuplicates(Node<T>* head)
+    {
+
+        if (!head || !head->next)
+        {
+            return head;
+        }
+
+        Node<T>* temp = head;
+
+        while (temp)
+        {
+            if (temp->next != nullptr && temp->data == temp->next->data)
+            {
+                Node<T>* duplicate_node = temp->next;
+                temp->next = duplicate_node->next;
+
+                delete(duplicate_node);
+            }
+            else
+            {
+                temp = temp->next;
+            }
+
+        }
+
+        return head;
+    }
 };
