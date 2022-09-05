@@ -35,6 +35,15 @@
     <Filter Include="SLL\Source">
       <UniqueIdentifier>{a71311e5-e0cb-4622-bf7c-b797150e7087}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sorting">
+      <UniqueIdentifier>{98fe5364-cba3-4514-a2b3-c433c78505d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sorting\Header">
+      <UniqueIdentifier>{649940cf-ff36-4d9a-8128-58477871bd37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sorting\Source">
+      <UniqueIdentifier>{563de643-ccb7-4389-b00a-d85ae7bb8622}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Leet.cpp">
@@ -52,6 +61,9 @@
     <ClCompile Include="SLL.cpp">
       <Filter>SLL\Source</Filter>
     </ClCompile>
+    <ClCompile Include="Sorting.cpp">
+      <Filter>Sorting\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arrays.h">
@@ -62,6 +74,9 @@
     </ClInclude>
     <ClInclude Include="SLL.h">
       <Filter>SLL\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Sorting.h">
+      <Filter>Sorting\Header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

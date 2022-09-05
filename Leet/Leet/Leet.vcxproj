@@ -143,12 +143,14 @@
     <ClCompile Include="Leet.cpp" />
     <ClCompile Include="Recursion.cpp" />
     <ClCompile Include="SLL.cpp" />
+    <ClCompile Include="Sorting.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arrays.h" />
     <ClInclude Include="Recursion.h" />
     <ClInclude Include="SLL.h" />
+    <ClInclude Include="Sorting.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
