@@ -60,6 +60,64 @@ void Sorting::InsertionSort(std::vector<int>& list)
 	}
 }
 
+// the interval from [s to m] and [m+1 to e] in v are sorted
+// the function will merge both of these intervals
+// such the interval from [s to e] in v becomes sorted
+void MergeSortedIntervals(std::vector<int>& v, int s, int m, int e)
+{
+
+	// temp is used to temporary store the vector obtained by merging
+	// elements from [s to m] and [m+1 to e] in v
+	std::vector<int> temp;
+
+	int i, j;
+	i = s;
+	j = m + 1;
+
+	while (i <= m && j <= e) {
+
+		if (v[i] <= v[j]) {
+			temp.push_back(v[i]);
+			++i;
+		}
+		else {
+			temp.push_back(v[j]);
+			++j;
+		}
+
+	}
+
+	while (i <= m) {
+		temp.push_back(v[i]);
+		++i;
+	}
+
+	while (j <= e) {
+		temp.push_back(v[j]);
+		++j;
+	}
+
+	for (int i = s; i <= e; ++i)
+		v[i] = temp[i - s]; 	//Not clear - Copying elements from temp to actual list
+
+}
+
+void Sorting::MergeSort(std::vector<int>& list, int left_indx, int right_indx)
+{
+	if (left_indx < right_indx)
+	{
+		int mid = (left_indx + right_indx)/ 2;
+
+		MergeSort(list, left_indx, mid);
+		MergeSort(list, mid+1, right_indx);
+		MergeSortedIntervals(list, left_indx, mid, right_indx);
+	}
+	else
+	{
+		return;
+	}
+}
+
 void Sorting::printData(std::vector<int>& list)
 {
 	for (int i = 0; i< list.size(); i++)

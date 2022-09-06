@@ -14,5 +14,7 @@ public:
 
 	void InsertionSort(std::vector<int>& list);
 
+	void MergeSort(std::vector<int>& list, int l, int r);
+
 	void printData(std::vector<int>& list);
 };
