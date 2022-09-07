@@ -2,6 +2,7 @@
 #include <vector>
 #include <iostream>
 #define MAX_STACK_SIZE 100
+
 using namespace std;
 
 class stack

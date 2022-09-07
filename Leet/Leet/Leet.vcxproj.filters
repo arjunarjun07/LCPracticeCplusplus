@@ -76,6 +76,9 @@
     <ClCompile Include="Stack.cpp">
       <Filter>Stack\Source</Filter>
     </ClCompile>
+    <ClCompile Include="StackSLL.cpp">
+      <Filter>Stack\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arrays.h">
@@ -91,6 +94,9 @@
       <Filter>Sorting\Header</Filter>
     </ClInclude>
     <ClInclude Include="Stack.h">
+      <Filter>Stack\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="StackSLL.h">
       <Filter>Stack\Header</Filter>
     </ClInclude>
   </ItemGroup>
