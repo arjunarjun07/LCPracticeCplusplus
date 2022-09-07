@@ -44,6 +44,15 @@
     <Filter Include="Sorting\Source">
       <UniqueIdentifier>{563de643-ccb7-4389-b00a-d85ae7bb8622}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Stack">
+      <UniqueIdentifier>{04bb1555-f938-46fc-844f-f1a7b918a735}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stack\Source">
+      <UniqueIdentifier>{33810fde-53a8-4a42-be54-72ec01b0e8c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stack\Header">
+      <UniqueIdentifier>{62747a9b-18b0-4f73-938a-01f7d76c65af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Leet.cpp">
@@ -64,6 +73,9 @@
     <ClCompile Include="Sorting.cpp">
       <Filter>Sorting\Source</Filter>
     </ClCompile>
+    <ClCompile Include="Stack.cpp">
+      <Filter>Stack\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arrays.h">
@@ -77,6 +89,9 @@
     </ClInclude>
     <ClInclude Include="Sorting.h">
       <Filter>Sorting\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack.h">
+      <Filter>Stack\Header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
