@@ -33,4 +33,6 @@ public:
     int searchInsert(vector<int>& nums, int target);
 
     int GetFirstRecurringElement(vector<int> nums);
+
+    bool isAnagram(string s, string t);
 };

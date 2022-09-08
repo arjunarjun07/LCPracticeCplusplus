@@ -3,85 +3,6 @@
 
 #include "Arrays.h"
 
-vector<int> Arrays::twoSum(vector<int>& nums, int target) {
-
-        vector<int> index_v;
-
-        std::map<int, int> num_index;
-
-        //use multimap instead of this
-        for (int i = 0; i < nums.size(); i++)
-            num_index.insert(std::pair<int, int>(nums[i], i));
-
-        std::sort(nums.begin(), nums.end());
-
-        int index_b = 0; int index_end = nums.size() - 1;
-
-        while (index_b < nums.size() && index_end >= 0 && index_b != index_end)
-        {
-            if (nums[index_b] + nums[index_end] < target)
-            {
-                index_b++;
-            }
-            else if (nums[index_b] + nums[index_end] > target)
-            {
-                index_end--;
-            }
-            else if (nums[index_b] + nums[index_end] == target)
-            {
-                index_v.push_back(num_index[nums[index_b]]);
-                index_v.push_back(num_index[nums[index_end]]);
-                break;
-            }
-        }
-
-        return index_v;
-
-    }
-
-vector<int> Arrays::TwoSumModified(vector<int>& nums, int target)
-    {
-        vector<int> index;
-
-        std::multimap<int, int> num_map;
-
-        for (int i = 0; i < nums.size(); i++)
-        {
-            int elem = nums[i];
-
-            /*
-                a + b = Target
-                b = Target - a;
-
-                b is the complimentary num which will get added with a to get the Target
-
-                That is why we are cal "diff as target - nums[i]"
-
-                //--------- In case of two subract ----------------
-
-                a-b = target
-                b = a - target
-            */
-
-            int diff = target - nums[i];
-
-            auto itr = num_map.find(diff);
-
-            if (itr != num_map.end())
-            {
-                index.push_back(i);
-                index.push_back(itr->second);
-                break;
-            }
-            else
-            {
-                num_map.insert(std::pair<int, int>(elem, i));
-            }
-        }
-
-        return index;
-    }
-
 int Arrays::maxSubArray(vector<int>& nums) {
 
     /*int sum = nums[0];
@@ -143,45 +64,6 @@ void Arrays::moveZeroes(vector<int>& nums) {
             nums.push_back(0);
         }
     }
-}
-
-bool Arrays::containsDuplicate(vector<int>& nums) {
-
-    /*
-        Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
-
-        Example 1:
-
-        Input: nums = [1,2,3,1]
-        Output: true
-        Example 2:
-
-        Input: nums = [1,2,3,4]
-        Output: false
-        Example 3:
-
-        Input: nums = [1,1,1,3,3,4,3,2,4,2]
-        Output: true
-    */
-
-    bool contains_duplicate = false;
-
-    std::map<int, int> item_and_index;
-
-    for (int i = 0; i < nums.size(); i++)
-    {
-        if (item_and_index.find(nums[i]) != item_and_index.end())
-        {
-            contains_duplicate = true;
-            break;
-        }
-        else
-        {
-            item_and_index.insert(std::pair<int, int>(nums[i], i));
-        }
-    }
-
-    return contains_duplicate;
 }
 
 void Arrays::rotate(vector<int>& nums, int k) {
@@ -405,3 +287,180 @@ int Arrays::GetFirstRecurringElement(vector<int> nums)
 
     return first_recurr_elem;
 }
+
+bool Arrays::containsDuplicate(vector<int>& nums) {
+
+    /*
+        Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+
+        Example 1:
+
+        Input: nums = [1,2,3,1]
+        Output: true
+        Example 2:
+
+        Input: nums = [1,2,3,4]
+        Output: false
+        Example 3:
+
+        Input: nums = [1,1,1,3,3,4,3,2,4,2]
+        Output: true
+    */
+
+    bool contains_duplicate = false;
+
+    std::map<int, int> item_and_index;
+
+    for (int i = 0; i < nums.size(); i++)
+    {
+        if (item_and_index.find(nums[i]) != item_and_index.end())
+        {
+            contains_duplicate = true;
+            break;
+        }
+        else
+        {
+            item_and_index.insert(std::pair<int, int>(nums[i], i));
+        }
+    }
+
+    return contains_duplicate;
+}
+
+//---------------- Neetcode ------------------------------------
+
+bool Arrays::isAnagram(string s, string t)
+{
+    bool IsAnag = true;
+
+    std::map<char, int> ch_map;
+
+    int l_s1 = s.length();
+    int l_s2 = t.length();
+
+    if (l_s1 != l_s2)
+    {
+        IsAnag = false;
+    }
+    else if(l_s1 == l_s2 && l_s1 != 0 && l_s2 != 0)
+    {
+        for (int i = 0; i < l_s1; i++)
+        {
+            std::map<char, int>::iterator it1 = ch_map.find(s[i]);
+
+            if (it1 == ch_map.end())
+            {
+                ch_map[s[i]] = 1;
+            }
+            else
+            {
+                ++(it1->second);
+            }
+
+            std::map<char, int>::iterator it2 = ch_map.find(t[i]);
+
+            if (it2 == ch_map.end())
+            {
+                ch_map[t[i]] = -1;
+            }
+            else
+            {
+                --(it2->second);
+            }
+
+        }
+
+        for (std::map<char, int>::iterator it = ch_map.begin(); it != ch_map.end(); it++)
+        {
+            if (it->second != 0)
+            {
+                IsAnag = false;
+                break;
+            }
+        }
+    }
+
+    return IsAnag;
+}
+
+vector<int> Arrays::twoSum(vector<int>& nums, int target) {
+
+    vector<int> index_v;
+
+    std::map<int, int> num_index;
+
+    //use multimap instead of this
+    for (int i = 0; i < nums.size(); i++)
+        num_index.insert(std::pair<int, int>(nums[i], i));
+
+    std::sort(nums.begin(), nums.end());
+
+    int index_b = 0; int index_end = nums.size() - 1;
+
+    while (index_b < nums.size() && index_end >= 0 && index_b != index_end)
+    {
+        if (nums[index_b] + nums[index_end] < target)
+        {
+            index_b++;
+        }
+        else if (nums[index_b] + nums[index_end] > target)
+        {
+            index_end--;
+        }
+        else if (nums[index_b] + nums[index_end] == target)
+        {
+            index_v.push_back(num_index[nums[index_b]]);
+            index_v.push_back(num_index[nums[index_end]]);
+            break;
+        }
+    }
+
+    return index_v;
+
+}
+
+vector<int> Arrays::TwoSumModified(vector<int>& nums, int target)
+{
+    vector<int> index;
+
+    std::multimap<int, int> num_map;
+
+    for (int i = 0; i < nums.size(); i++)
+    {
+        int elem = nums[i];
+
+        /*
+            a + b = Target
+            b = Target - a;
+
+            b is the complimentary num which will get added with a to get the Target
+
+            That is why we are cal "diff as target - nums[i]"
+
+            //--------- In case of two subract ----------------
+
+            a-b = target
+            b = a - target
+        */
+
+        int diff = target - nums[i];
+
+        auto itr = num_map.find(diff);
+
+        if (itr != num_map.end())
+        {
+            index.push_back(i);
+            index.push_back(itr->second);
+            break;
+        }
+        else
+        {
+            num_map.insert(std::pair<int, int>(elem, i));
+        }
+    }
+
+    return index;
+}
+
+
+//---------------- Neetcode ------------------------------------
