@@ -53,6 +53,15 @@
     <Filter Include="Stack\Header">
       <UniqueIdentifier>{62747a9b-18b0-4f73-938a-01f7d76c65af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Queue">
+      <UniqueIdentifier>{0e6060f4-927d-42c4-959e-0c0521169022}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Queue\Header">
+      <UniqueIdentifier>{91643f96-af20-4cdf-b3ea-38edd1b21733}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Queue\Source">
+      <UniqueIdentifier>{2ebdf7ec-4231-402c-8cff-3bcf07423507}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Leet.cpp">
@@ -79,6 +88,9 @@
     <ClCompile Include="StackSLL.cpp">
       <Filter>Stack\Source</Filter>
     </ClCompile>
+    <ClCompile Include="Queue.cpp">
+      <Filter>Queue\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arrays.h">
@@ -98,6 +110,9 @@
     </ClInclude>
     <ClInclude Include="StackSLL.h">
       <Filter>Stack\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Queue.h">
+      <Filter>Queue\Header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
