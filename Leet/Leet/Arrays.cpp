@@ -2,6 +2,7 @@
 //
 
 #include "Arrays.h"
+#include <unordered_map>
 
 int Arrays::maxSubArray(vector<int>& nums) {
 
@@ -462,5 +463,58 @@ vector<int> Arrays::TwoSumModified(vector<int>& nums, int target)
     return index;
 }
 
+vector<vector<string>> Arrays::groupAnagrams(vector<string>& strs)
+{
+    vector<vector<string>> result;
+
+    unordered_map<string, vector<string> > store;
+
+    for (std::vector<string>::iterator it_str_vec = strs.begin(); it_str_vec != strs.end(); it_str_vec++)
+    {
+        std::string s = *it_str_vec;
+            
+        std::sort(s.begin(), s.end());
+    
+        // make hash of a sorted string
+        store[s].push_back(*it_str_vec);
+    }
+
+    for (unordered_map<string, vector<string>>::iterator it = store.begin(); it != store.end(); it++)
+    {   
+        result.push_back(it->second);   
+    }
+
+    return (result);
+}
+
+vector<int> Arrays::topKFrequent(vector<int>& nums, int k) 
+{
+    unordered_map<int, int> mp;
+
+    for (int x : nums)
+    {
+        mp[x]++;
+    } 
+
+    //bucket sort
+
+    vector<vector<int>> freq(nums.size() + 1);
+    for (auto x : mp)
+    {
+        freq[x.second].push_back(x.first);
+    }
+
+    vector<int> res;
+    for (int i = nums.size(); i >= 0 and res.size() < k; i--)
+    {
+        for (int x : freq[i])
+        {
+            res.push_back(x);
+        }
+    }
+
+
+    return res;
+}
 
 //---------------- Neetcode ------------------------------------

@@ -35,4 +35,8 @@ public:
     int GetFirstRecurringElement(vector<int> nums);
 
     bool isAnagram(string s, string t);
+
+    vector<vector<string>> groupAnagrams(vector<string>& strs);
+
+    vector<int> topKFrequent(vector<int>& nums, int k);
 };
