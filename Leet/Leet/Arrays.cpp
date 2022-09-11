@@ -517,4 +517,117 @@ vector<int> Arrays::topKFrequent(vector<int>& nums, int k)
     return res;
 }
 
+vector<int> Arrays::productExceptSelf(vector<int>& nums) {
+    int n = nums.size();
+    vector<int>ans(n);
+    int rp = 1;
+
+    for (int i = 0; i < n; i++) {
+        ans[i] = rp;
+        rp = rp * nums[i];
+    }
+
+    rp = 1;
+
+    for (int i = n - 1; i >= 0; i--) {
+        ans[i] = ans[i] * rp;
+        rp = rp * nums[i];
+    }
+
+    return ans;
+}
+
+bool Arrays::isValidSudoku(vector<vector<string>>& board) 
+{
+    unordered_map<string, int> hashmp;
+
+    for (int k = 0; k < board.size(); k++)
+    {
+        //validate each row elems
+        for (int j = 0; j < board.size(); j++)
+        {
+            if (board[k][j] != ".")
+            {
+                hashmp[board[k][j]]++;
+            }
+
+            //cout << endl << "(k,j)" << k << "," << j;
+        }
+
+        for (auto elm : hashmp)
+        {
+            if (elm.second >= 2)
+            {
+                //return false;
+            }
+        }
+
+        hashmp.clear();
+
+        //cout << endl<<"-----------------------------";
+
+        //validate each column elems
+
+        for (int i = 0; i < board.size(); i++)
+        {
+            if (board[i][k] != ".")
+            {
+                hashmp[board[i][k]]++;
+            }
+
+            //cout << endl << "(i,k)" << i << "," << k;
+        }
+
+        //cout << endl << "-----------------------------";
+
+        for (auto elm : hashmp)
+        {
+            if (elm.second >= 2)
+            {
+                //return false;
+            }
+        }
+    }
+
+    hashmp.clear();
+
+    for (int s_r_ind = 0; s_r_ind <= 6; s_r_ind += 3)
+    {
+        for (int s_c_ind = 0; s_c_ind <= 6; s_c_ind += 3)
+        {
+
+            for (int k = s_r_ind; k < s_r_ind+3; k++)
+            {
+
+                //iterate 3 elems of given row
+                for (int j = s_c_ind; j < (s_c_ind + 3); j++)
+                {
+                    if (board[s_r_ind][j] != ".")
+                        hashmp[board[s_r_ind][j]]++;
+
+                    cout << endl << "(s_r_ind,j)" << s_r_ind << "," << j;
+                }
+
+                cout << endl << "-----------------------------";
+
+                //iterate 3 elems of given column
+                for (int i = s_r_ind; i < (s_r_ind + 3); i++)
+                {
+                    if (board[i][s_c_ind] != ".")
+                        hashmp[board[i][s_c_ind]]++;
+
+                    cout << endl << "(i,s_c_ind)" << i << "," << s_c_ind;
+                }
+
+                cout << endl << "-----------------------------";
+
+                s_r_ind
+            }
+        }
+    }
+
+    return true;
+}
+
+
 //---------------- Neetcode ------------------------------------
