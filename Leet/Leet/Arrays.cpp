@@ -551,14 +551,14 @@ bool Arrays::isValidSudoku(vector<vector<string>>& board)
                 hashmp[board[k][j]]++;
             }
 
-            //cout << endl << "(k,j)" << k << "," << j;
+           //cout << endl << "(k,j)" << k << "," << j;
         }
 
         for (auto elm : hashmp)
         {
             if (elm.second >= 2)
             {
-                //return false;
+                return false;
             }
         }
 
@@ -584,9 +584,11 @@ bool Arrays::isValidSudoku(vector<vector<string>>& board)
         {
             if (elm.second >= 2)
             {
-                //return false;
+                return false;
             }
         }
+
+        hashmp.clear();
     }
 
     hashmp.clear();
@@ -602,27 +604,43 @@ bool Arrays::isValidSudoku(vector<vector<string>>& board)
                 //iterate 3 elems of given row
                 for (int j = s_c_ind; j < (s_c_ind + 3); j++)
                 {
-                    if (board[s_r_ind][j] != ".")
-                        hashmp[board[s_r_ind][j]]++;
+                    if (board[k][j] != ".")
+                        hashmp[board[k][j]]++;
 
-                    cout << endl << "(s_r_ind,j)" << s_r_ind << "," << j;
+                    cout << endl << "(k,j)" << k << "," << j;
+                }
+
+                for (auto elm : hashmp)
+                {
+                    if (elm.second >= 2)
+                    {
+                        return false;
+                    }
                 }
 
                 cout << endl << "-----------------------------";
 
                 //iterate 3 elems of given column
-                for (int i = s_r_ind; i < (s_r_ind + 3); i++)
+                for (int i = s_c_ind; i < (s_c_ind + 3); i++)
                 {
-                    if (board[i][s_c_ind] != ".")
-                        hashmp[board[i][s_c_ind]]++;
+                    if (board[i][k] != ".")
+                        hashmp[board[i][k]]++;
 
-                    cout << endl << "(i,s_c_ind)" << i << "," << s_c_ind;
+                    cout << endl << "(i,k)" << i << "," << k;
+                }
+
+                for (auto elm : hashmp)
+                {
+                    if (elm.second >= 2)
+                    {
+                        return false;
+                    }
                 }
 
                 cout << endl << "-----------------------------";
-
-                s_r_ind
             }
+
+            hashmp.clear();
         }
     }
 
