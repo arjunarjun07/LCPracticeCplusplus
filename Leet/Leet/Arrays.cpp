@@ -597,47 +597,24 @@ bool Arrays::isValidSudoku(vector<vector<string>>& board)
     {
         for (int s_c_ind = 0; s_c_ind <= 6; s_c_ind += 3)
         {
-
-            for (int k = s_r_ind; k < s_r_ind+3; k++)
+            for (int k = s_r_ind; k < (s_r_ind + 3); k++)
             {
-
-                //iterate 3 elems of given row
-                for (int j = s_c_ind; j < (s_c_ind + 3); j++)
+                for (int l = s_c_ind; l < (s_c_ind + 3); l++)
                 {
-                    if (board[k][j] != ".")
-                        hashmp[board[k][j]]++;
-
-                    cout << endl << "(k,j)" << k << "," << j;
+                    if (board[k][l] != ".")
+                        hashmp[board[k][l]]++;
+                    //cout << endl << "k,l=" << k << "," << l;
                 }
+            }
 
-                for (auto elm : hashmp)
+            //cout << endl << "-----------------";
+
+            for (auto elm : hashmp)
+            {
+                if (elm.second >= 2)
                 {
-                    if (elm.second >= 2)
-                    {
-                        return false;
-                    }
+                    return false;
                 }
-
-                cout << endl << "-----------------------------";
-
-                //iterate 3 elems of given column
-                for (int i = s_c_ind; i < (s_c_ind + 3); i++)
-                {
-                    if (board[i][k] != ".")
-                        hashmp[board[i][k]]++;
-
-                    cout << endl << "(i,k)" << i << "," << k;
-                }
-
-                for (auto elm : hashmp)
-                {
-                    if (elm.second >= 2)
-                    {
-                        return false;
-                    }
-                }
-
-                cout << endl << "-----------------------------";
             }
 
             hashmp.clear();
