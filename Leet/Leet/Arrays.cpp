@@ -3,6 +3,8 @@
 
 #include "Arrays.h"
 #include <unordered_map>
+#include <set>
+#include <unordered_set>
 
 int Arrays::maxSubArray(vector<int>& nums) {
 
@@ -550,8 +552,6 @@ bool Arrays::isValidSudoku(vector<vector<string>>& board)
             {
                 hashmp[board[k][j]]++;
             }
-
-           //cout << endl << "(k,j)" << k << "," << j;
         }
 
         for (auto elm : hashmp)
@@ -564,8 +564,6 @@ bool Arrays::isValidSudoku(vector<vector<string>>& board)
 
         hashmp.clear();
 
-        //cout << endl<<"-----------------------------";
-
         //validate each column elems
 
         for (int i = 0; i < board.size(); i++)
@@ -574,11 +572,7 @@ bool Arrays::isValidSudoku(vector<vector<string>>& board)
             {
                 hashmp[board[i][k]]++;
             }
-
-            //cout << endl << "(i,k)" << i << "," << k;
         }
-
-        //cout << endl << "-----------------------------";
 
         for (auto elm : hashmp)
         {
@@ -603,11 +597,8 @@ bool Arrays::isValidSudoku(vector<vector<string>>& board)
                 {
                     if (board[k][l] != ".")
                         hashmp[board[k][l]]++;
-                    //cout << endl << "k,l=" << k << "," << l;
                 }
             }
-
-            //cout << endl << "-----------------";
 
             for (auto elm : hashmp)
             {
@@ -622,6 +613,32 @@ bool Arrays::isValidSudoku(vector<vector<string>>& board)
     }
 
     return true;
+}
+
+int Arrays::longestConsecutive(vector<int>& nums)
+{
+    std::unordered_set<int> s (nums.begin(), nums.end());
+
+    int max_len = 0;
+
+    for (int i = 0; i< nums.size(); i++)
+    {   
+        int len = 0;
+
+        if (s.find(nums[i] - 1) == s.end())
+        {
+            //we found the beginning of a seq, inc len until we reach max
+
+            while (s.find(nums[i]+len) != s.end())
+            {
+                len++;
+            }
+        }
+
+        max_len = std::max(len, max_len);
+    }
+
+    return max_len;
 }
 
 

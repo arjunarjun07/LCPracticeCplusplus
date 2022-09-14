@@ -43,4 +43,6 @@ public:
     vector<int> productExceptSelf(vector<int>& nums);
 
     bool isValidSudoku(vector<vector<string>>& board);
+
+    int longestConsecutive(vector<int>& nums);
 };
