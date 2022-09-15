@@ -148,6 +148,7 @@
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="StackSLL.cpp" />
+    <ClCompile Include="TwoPointers.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arrays.h" />
@@ -157,6 +158,7 @@
     <ClInclude Include="Sorting.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="StackSLL.h" />
+    <ClInclude Include="TwoPointers.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
