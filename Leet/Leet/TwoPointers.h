@@ -18,4 +18,6 @@ public:
     vector<vector<int>> threeSum(vector<int>& nums);
 
     int maxArea(vector<int>& height);
+
+    int trap(vector<int>& height);
 };
