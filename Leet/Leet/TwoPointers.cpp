@@ -165,75 +165,28 @@ int TwoPointers::maxArea(vector<int>& height)
 
 int TwoPointers::trap(vector<int>& height) 
 {
-	int sum_of_water_trapped = 0;
+	int l = 0, r = height.size() - 1;
+	int res = 0;
 
-	for (int i = 0; i < height.size(); i++)
+	int leftMax = height[l];
+	int rightMax = height[r];
+
+	while (l < r)
 	{
-		int current_height = height[i];
-
-		if (height[i] != 0)
+		if (leftMax < rightMax)
 		{
-			int dist_between_two_h = 0;
-			int nxt_indx_of_height = i+1;
+			l = l + 1;
 
-			int max_height_found = -1;
-			int nxt_max_of_curr_height = INT_MIN;
-			int index_of_nxt_max_of_curr_height = -1;
+			leftMax = std::max(leftMax, height[l]);
+			res += leftMax - height[l];
+		}
+		else
+		{
+			r = r - 1;
 
-			int sum_of_in_between_heights = 0;
-
-			while (nxt_indx_of_height < height.size())
-			{
-				if (height[nxt_indx_of_height] >= current_height)
-				{
-					max_height_found = height[nxt_indx_of_height];
-					break;
-				}
-				else
-				{
-					//save the nxt max of the current_height & its index
-					if (height[nxt_indx_of_height] >= nxt_max_of_curr_height)
-					{
-						nxt_max_of_curr_height = height[nxt_indx_of_height];
-						index_of_nxt_max_of_curr_height = nxt_indx_of_height;
-					}
-				}
-
-				sum_of_in_between_heights += height[nxt_indx_of_height];
-
-				nxt_indx_of_height++;
-				dist_between_two_h++;
-			}
-
-			if (max_height_found != -1)
-			{
-				int max_area_of_water = dist_between_two_h * current_height;
-
-				sum_of_water_trapped += (max_area_of_water - sum_of_in_between_heights);
-
-				i = nxt_indx_of_height - 1;
-			}
-			else
-			{
-				int dist = index_of_nxt_max_of_curr_height - i - 1;
-
-				int x = 0;
-
-				int c = index_of_nxt_max_of_curr_height -1;
-				while (c > i)
-				{
-					x += height[c];
-					c--;
-				}
-
-				int max_area_of_water = dist * nxt_max_of_curr_height;
-
-				sum_of_water_trapped += (max_area_of_water - x);
-
-				i = index_of_nxt_max_of_curr_height - 1;
-			}
+			rightMax = std::max(rightMax, height[r]);
+			res += rightMax - height[r];
 		}
 	}
-
-	return sum_of_water_trapped;
+	return res;
 }
