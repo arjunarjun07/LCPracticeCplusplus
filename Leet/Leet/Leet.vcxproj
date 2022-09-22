@@ -143,6 +143,7 @@
     <ClCompile Include="Leet.cpp" />
     <ClCompile Include="Queue.cpp" />
     <ClCompile Include="Recursion.cpp" />
+    <ClCompile Include="SlidingWindow.cpp" />
     <ClCompile Include="SLL.cpp" />
     <ClCompile Include="Sorting.cpp" />
     <ClCompile Include="Source.cpp" />
@@ -154,6 +155,7 @@
     <ClInclude Include="Arrays.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Recursion.h" />
+    <ClInclude Include="SlidingWindow.h" />
     <ClInclude Include="SLL.h" />
     <ClInclude Include="Sorting.h" />
     <ClInclude Include="Stack.h" />
