@@ -8,5 +8,8 @@ class SlidingWindow
 {
 public:
 	int maxProfit(std::vector<int>& prices);
+
 	int lengthOfLongestSubstring(string s);
+
+	int characterReplacement(string s, int k);
 };
