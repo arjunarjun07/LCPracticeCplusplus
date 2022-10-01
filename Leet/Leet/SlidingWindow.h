@@ -2,8 +2,11 @@
 #include <iostream>
 #include <vector>
 
+using namespace std;
+
 class SlidingWindow
 {
 public:
 	int maxProfit(std::vector<int>& prices);
+	int lengthOfLongestSubstring(string s);
 };
