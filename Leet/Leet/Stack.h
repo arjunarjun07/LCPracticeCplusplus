@@ -5,7 +5,7 @@
 
 using namespace std;
 
-class stack
+class Mystack
 {
 private:
 	
@@ -14,7 +14,7 @@ private:
 
 public:
 
-	stack();
+	Mystack();
 
 	void push(int val);
 

@@ -1,12 +1,12 @@
 #include "Stack.h"
 
-stack::stack()
+Mystack::Mystack()
 {
 	stk = vector<int>(MAX_STACK_SIZE, 0);
 	top = -1;
 }
 
-void stack::push(int val)
+void Mystack::push(int val)
 {
 	if (top < MAX_STACK_SIZE - 1 )
 	{
@@ -14,11 +14,11 @@ void stack::push(int val)
 	}
 	else
 	{
-		cout << "stack overflow";
+		cout << "Mystack overflow";
 	}
 }
 
-int stack::pop()
+int Mystack::pop()
 {
 	if (top >= 0)
 	{
@@ -36,7 +36,7 @@ int stack::pop()
 	}
 }
 
-bool stack::Isempty()
+bool Mystack::Isempty()
 {
 	return (top < 0);
 }
