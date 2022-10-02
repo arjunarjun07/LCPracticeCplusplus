@@ -44,15 +44,6 @@
     <Filter Include="Sorting\Source">
       <UniqueIdentifier>{563de643-ccb7-4389-b00a-d85ae7bb8622}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Stack">
-      <UniqueIdentifier>{04bb1555-f938-46fc-844f-f1a7b918a735}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Stack\Source">
-      <UniqueIdentifier>{33810fde-53a8-4a42-be54-72ec01b0e8c0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Stack\Header">
-      <UniqueIdentifier>{62747a9b-18b0-4f73-938a-01f7d76c65af}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Queue">
       <UniqueIdentifier>{0e6060f4-927d-42c4-959e-0c0521169022}</UniqueIdentifier>
     </Filter>
@@ -73,6 +64,24 @@
     </Filter>
     <Filter Include="SlidingWindow">
       <UniqueIdentifier>{55a5576d-7a9d-48bf-ac75-c796404e477b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StackImplementation">
+      <UniqueIdentifier>{04bb1555-f938-46fc-844f-f1a7b918a735}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StackImplementation\Source">
+      <UniqueIdentifier>{33810fde-53a8-4a42-be54-72ec01b0e8c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StackImplementation\Header">
+      <UniqueIdentifier>{62747a9b-18b0-4f73-938a-01f7d76c65af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stack">
+      <UniqueIdentifier>{2cd2b4c0-48d1-4005-a539-e8502dcdbc02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stack\Header">
+      <UniqueIdentifier>{6866d9df-fd84-4ca2-8113-0b35616179bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stack\Source">
+      <UniqueIdentifier>{63d77d01-0bd3-42d5-b5b7-ce162531db72}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -95,10 +104,10 @@
       <Filter>Sorting\Source</Filter>
     </ClCompile>
     <ClCompile Include="Stack.cpp">
-      <Filter>Stack\Source</Filter>
+      <Filter>StackImplementation\Source</Filter>
     </ClCompile>
     <ClCompile Include="StackSLL.cpp">
-      <Filter>Stack\Source</Filter>
+      <Filter>StackImplementation\Source</Filter>
     </ClCompile>
     <ClCompile Include="Queue.cpp">
       <Filter>Queue\Source</Filter>
@@ -108,6 +117,9 @@
     </ClCompile>
     <ClCompile Include="SlidingWindow.cpp">
       <Filter>SlidingWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="Stacks.cpp">
+      <Filter>stack\Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -124,10 +136,10 @@
       <Filter>Sorting\Header</Filter>
     </ClInclude>
     <ClInclude Include="Stack.h">
-      <Filter>Stack\Header</Filter>
+      <Filter>StackImplementation\Header</Filter>
     </ClInclude>
     <ClInclude Include="StackSLL.h">
-      <Filter>Stack\Header</Filter>
+      <Filter>StackImplementation\Header</Filter>
     </ClInclude>
     <ClInclude Include="Queue.h">
       <Filter>Queue\Header</Filter>
@@ -137,6 +149,9 @@
     </ClInclude>
     <ClInclude Include="SlidingWindow.h">
       <Filter>SlidingWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="Stacks.h">
+      <Filter>stack\Header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -148,6 +148,7 @@
     <ClCompile Include="Sorting.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Stack.cpp" />
+    <ClCompile Include="Stacks.cpp" />
     <ClCompile Include="StackSLL.cpp" />
     <ClCompile Include="TwoPointers.cpp" />
   </ItemGroup>
@@ -159,6 +160,7 @@
     <ClInclude Include="SLL.h" />
     <ClInclude Include="Sorting.h" />
     <ClInclude Include="Stack.h" />
+    <ClInclude Include="Stacks.h" />
     <ClInclude Include="StackSLL.h" />
     <ClInclude Include="TwoPointers.h" />
   </ItemGroup>
