@@ -101,3 +101,35 @@ long int Stacks::evaluateRPN(vector<string>& tokens)
 	return operandstk.top();
 }
 
+vector<int> Stacks::dailyTemperatures(vector<int>& temperatures)
+{
+	vector<int> res;
+
+	for (int i = 0; i < temperatures.size(); i++)
+	{
+		bool isgreater_temp_found = false;
+
+		int counter = 1;
+		for (int j = i+1; j < temperatures.size(); j++)
+		{
+			if (temperatures[j] <= temperatures[i])
+			{
+				counter++;
+			}
+			else
+			{
+				isgreater_temp_found = true;
+				res.push_back(counter);
+				break;
+			}
+		}
+
+		if (isgreater_temp_found == false)
+		{
+			res.push_back(0);
+		}
+	}
+
+	return res;
+}
+

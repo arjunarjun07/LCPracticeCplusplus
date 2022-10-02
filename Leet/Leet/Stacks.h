@@ -16,6 +16,8 @@ public:
 
     long int evaluateRPN(vector<string> &tokens);
 
+    vector<int> dailyTemperatures(vector<int>& temperatures);
+
 };
 
 class MinStack
