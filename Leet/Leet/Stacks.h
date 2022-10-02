@@ -14,13 +14,15 @@ public:
 
 	bool isValid(string s);
 
-};
+    long int evaluateRPN(vector<string> &tokens);
 
-int mini(int a, int b) { return a > b ? b : a; }
+};
 
 class MinStack
 {
 public:
+    int mini(int a, int b) { return a > b ? b : a; }
+
     stack<pair<int, int> > s;
 
     void push(int element)
