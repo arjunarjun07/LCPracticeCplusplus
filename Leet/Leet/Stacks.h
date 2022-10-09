@@ -16,6 +16,9 @@ public:
 
     long int evaluateRPN(vector<string> &tokens);
 
+    void BackTrack(int lparanth_count, int rparanth_count, int& n, vector<string>& res, std::string &current_str);
+    vector<string> generateParenthesis(int n);
+
     vector<int> dailyTemperatures(vector<int>& temperatures);
 
 };
@@ -44,7 +47,7 @@ public:
 
     int pop()
     {
-        int popped;
+        int popped = -1;
         if (!s.empty()) {
             // popped has popped number
             popped = s.top().first;
