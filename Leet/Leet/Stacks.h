@@ -21,6 +21,8 @@ public:
 
     vector<int> dailyTemperatures(vector<int>& temperatures);
 
+    int carFleet(int target, vector<int>& position, vector<int>& speed);
+
 };
 
 class MinStack

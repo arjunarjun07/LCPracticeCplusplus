@@ -1,5 +1,7 @@
 #include "Stacks.h"
 #include <string>
+#include <unordered_map>
+#include <algorithm>
 
 
 Stacks::Stacks()
@@ -157,5 +159,35 @@ vector<int> Stacks::dailyTemperatures(vector<int>& temperatures)
 	}
 
 	return res;
+}
+
+int Stacks::carFleet(int target, vector<int>& pos, vector<int>& speed)
+{
+	
+	{
+		vector<pair< int, int >> nums;
+
+		for (int i = 0; i < pos.size(); i++)
+		{
+			nums.push_back({ pos[i] , speed[i] });
+		}
+
+		sort(nums.begin(), nums.end());
+
+		stack< double > stk;
+
+
+		for (int i = nums.size() - 1; i >= 0; i--)
+		{
+			double t = (target - nums[i].first) / ((double)nums[i].second);
+
+			if (stk.empty() || stk.top() < t)
+			{
+				stk.push(t);
+			}
+		}
+
+		return stk.size();
+	}
 }
 
