@@ -191,3 +191,41 @@ int Stacks::carFleet(int target, vector<int>& pos, vector<int>& speed)
 	}
 }
 
+using index_height_pair = pair<int, int>;
+
+int Stacks::largestRectangleArea(vector<int>& heights)
+{
+	int maxArea = 0;
+
+	stack<index_height_pair> indx_height_stk;
+
+	int i = 0;
+	for (auto curr_h : heights)
+	{
+		int start_index = i;
+
+		while (!indx_height_stk.empty() && indx_height_stk.top().second > curr_h)
+		{
+			index_height_pair hp = indx_height_stk.top();
+			indx_height_stk.pop();
+
+			maxArea = std::max(maxArea, hp.second *(i - hp.first));
+
+			start_index = hp.first;
+		}
+
+		indx_height_stk.push(pair<int,int>(start_index, curr_h)); //indx_height_stk.empty() && indx_height_stk.top().second < curr_h
+
+		i++;
+	}
+
+	while (!indx_height_stk.empty())
+	{
+		index_height_pair hp = indx_height_stk.top();
+		indx_height_stk.pop();
+		maxArea = std::max(maxArea, hp.second * ((int)heights.size() - hp.first));
+	}
+
+	return maxArea;
+}
+
