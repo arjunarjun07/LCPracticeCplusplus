@@ -83,6 +83,15 @@
     <Filter Include="stack\Source">
       <UniqueIdentifier>{63d77d01-0bd3-42d5-b5b7-ce162531db72}</UniqueIdentifier>
     </Filter>
+    <Filter Include="LinkedList">
+      <UniqueIdentifier>{c5406191-5048-44b7-954b-09a507f1f239}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LinkedList\Source">
+      <UniqueIdentifier>{b27bf25d-ffae-456a-a515-96b4913d7349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LinkedList\Header">
+      <UniqueIdentifier>{90b0963f-2f59-4491-901e-082cecdbe8cc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Leet.cpp">
@@ -121,6 +130,9 @@
     <ClCompile Include="Stacks.cpp">
       <Filter>stack\Source</Filter>
     </ClCompile>
+    <ClCompile Include="LinkedListClss.cpp">
+      <Filter>LinkedList\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arrays.h">
@@ -152,6 +164,9 @@
     </ClInclude>
     <ClInclude Include="Stacks.h">
       <Filter>stack\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedListClss.h">
+      <Filter>LinkedList\Header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
