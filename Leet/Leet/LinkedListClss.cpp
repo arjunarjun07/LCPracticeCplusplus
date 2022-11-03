@@ -1,5 +1,7 @@
 #include "LinkedListClss.h"
 #include <string>
+#include <map>
+#include <unordered_map>
 
 ListNode* LinkedlistClss::reverseList(ListNode* head)
 {
@@ -93,4 +95,144 @@ void LinkedlistClss::reorderList(ListNode* head)
         else
             p = nullptr;
     }
+}
+
+void LinkedlistClss::delete_at_index(ListNode* head, int index)
+{
+    if (!head)
+    {
+        return;
+    }
+
+    ListNode* curr = head;
+    ListNode* prev = nullptr;
+
+    int indx_countr = 1;
+    while (curr && indx_countr < index)
+    {
+        indx_countr++;
+        prev = curr;
+        curr = curr->next;
+    }
+
+    if (prev && curr)
+    {
+        prev->next = curr->next;
+        delete(curr);
+    }
+}
+
+ListNode* LinkedlistClss::removeNthFromEnd(ListNode* head, int n)
+{
+    ListNode* left = head, * right = head;
+
+    while (n--)
+    {
+        right = right->next;
+    }
+
+    if (!right) //Try two nodes with n = 2 to understand this line
+        return head->next;
+    
+    while (right->next) 
+    {
+        left = left->next;
+        right = right->next;
+    }
+    
+    ListNode* toDelete = left->next;
+    left->next = left->next->next;
+    
+    delete toDelete;
+    
+    return head;
+}
+
+bool LinkedlistClss::hasCycle(ListNode* head)
+{
+    bool hascycle = false;
+
+    std::map<long int, int> hashmap;
+
+    ListNode* ptr = head;
+
+    while (ptr)
+    {
+        int addr = (long int)&(*ptr);
+
+        if (hashmap.find(addr) == hashmap.end())
+        {
+            hashmap.insert(std::pair{ addr, ptr->val});
+            ptr = ptr->next;
+        }
+        else
+        {
+            //cycle found
+            hascycle = true;
+            break;
+        }
+    }
+
+    return hascycle;
+}
+
+NodeR* LinkedlistClss::copyRandomList(NodeR* head)
+{
+    NodeR* p = head;
+
+
+    NodeR* dummy_h = new NodeR(-1);
+    NodeR* new_list_head = dummy_h;
+
+    std::map<NodeR*, int> old_list;
+    std::map<int, NodeR*> new_list;
+    
+    //create new nodes & duplicate the links exactly as the source
+    int index = 0;
+    while (p)
+    {
+        NodeR* new_node = new NodeR(p->val);
+
+        dummy_h->next = new_node;
+        dummy_h = dummy_h->next;
+
+
+        old_list.insert({p, index});
+        new_list.insert({index, new_node});
+
+        p = p->next;
+        index++;
+    }
+
+
+    //make random pointers links of src list similar in the new list
+    p = head;
+    NodeR* new_n = new_list_head->next;
+
+    while (p)
+    {
+        if (p->random)
+        {
+            int i = old_list[p->random];
+            new_n->random = new_list[i];
+        }
+        else
+        {
+            new_n->random = nullptr;
+        }
+        
+        new_n = new_n->next;
+        p = p->next;
+    }
+
+    //delete head node
+    if (new_list_head)
+    {
+        NodeR* temp = new_list_head;
+        new_list_head = new_list_head->next;
+
+        delete temp;
+    }
+
+    return new_list_head;
 }
