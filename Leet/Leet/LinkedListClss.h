@@ -39,4 +39,6 @@ public:
 	bool hasCycle(ListNode* head);
 
 	NodeR* copyRandomList(NodeR* head);
+
+	ListNode* addTwoNumbers(ListNode* l1, ListNode* l2);
 };

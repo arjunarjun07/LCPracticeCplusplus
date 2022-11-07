@@ -236,3 +236,102 @@ NodeR* LinkedlistClss::copyRandomList(NodeR* head)
 
     return new_list_head;
 }
+
+ListNode* LinkedlistClss::addTwoNumbers(ListNode* l1, ListNode* l2)
+{
+    int carry = 0;
+
+    ListNode* dummy = new ListNode(0, nullptr);
+    ListNode* dummy_head_ptr = dummy;
+
+    ListNode* NewNode = nullptr;
+
+    while (l1 && l2)
+    {
+        int sum_of_digits = l1->val + l2->val + carry;
+
+        if (sum_of_digits <= 9)
+        {
+            carry = 0;
+            NewNode = new ListNode(sum_of_digits, nullptr);
+        }
+        else
+        {
+            NewNode = new ListNode(sum_of_digits % 10, nullptr);
+            carry = sum_of_digits / 10;
+        }
+
+        dummy->next = NewNode;
+        dummy = dummy->next;
+
+        l1 = l1->next;
+        l2 = l2->next;
+    }
+
+    //if carry != 0 or list 1 || list2 not empty
+
+    if (l1)
+    {
+        while (l1)
+        {
+            int sum_of_digits = l1->val + carry;
+
+            if (sum_of_digits <= 9)
+            {
+                carry = 0;
+                NewNode = new ListNode(sum_of_digits, nullptr);
+            }
+            else
+            {
+                NewNode = new ListNode(sum_of_digits % 10, nullptr);
+                carry = sum_of_digits / 10;
+            }
+
+            dummy->next = NewNode;
+            dummy = dummy->next;
+
+            l1 = l1->next;
+        }
+    }
+    else if(l2)
+    {
+        while (l2)
+        {
+            int sum_of_digits = l2->val + carry;
+
+            if (sum_of_digits <= 9)
+            {
+                carry = 0;
+                NewNode = new ListNode(sum_of_digits, nullptr);
+            }
+            else
+            {
+                NewNode = new ListNode(sum_of_digits % 10, nullptr);
+                carry = sum_of_digits / 10;
+            }
+
+            dummy->next = NewNode;
+            dummy = dummy->next;
+
+            l2 = l2->next;
+        }
+    }
+
+    if (carry != 0 && (l1 == nullptr && l2 == nullptr))
+    {
+        NewNode = new ListNode(carry, nullptr);
+        dummy->next = NewNode;
+        dummy = dummy->next;
+    }
+
+    if (dummy_head_ptr->next)
+    {
+        ListNode* temp = dummy_head_ptr;
+
+        dummy_head_ptr = dummy_head_ptr->next;
+
+        delete temp;
+    }
+
+    return dummy_head_ptr;
+}
