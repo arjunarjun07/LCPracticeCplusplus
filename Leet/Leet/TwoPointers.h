@@ -20,4 +20,6 @@ public:
     int maxArea(vector<int>& height);
 
     int trap(vector<int>& height);
+
+    int findDuplicate(vector<int>& nums);
 };

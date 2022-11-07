@@ -1,4 +1,5 @@
 #include "TwoPointers.h"
+#include <set>
 
 bool TwoPointers::isPalindrome(string s)
 {
@@ -190,3 +191,40 @@ int TwoPointers::trap(vector<int>& height)
 	}
 	return res;
 }
+
+int TwoPointers::findDuplicate(vector<int>& nums)
+{
+	/*
+	* //Without extra space
+	* 
+		std::sort(nums.begin(), nums.end()); //O(Nlog(N))
+
+		auto it = adjacent_find(nums.begin(), nums.end()); //O(N)
+
+		if(it != nums.end())
+		{
+			return *it;
+		}
+		else
+		{
+			return -1;
+		}
+	*/
+
+	set<int> myset;
+
+	for (const auto elem : nums)
+	{
+		auto [itr, status] = myset.insert(elem);
+
+		if (status == false)
+		{
+			cout << "duplicate";
+			return elem;
+		}
+	}
+
+	return -1;
+}
+
+
