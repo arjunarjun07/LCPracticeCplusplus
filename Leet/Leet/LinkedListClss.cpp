@@ -2,6 +2,7 @@
 #include <string>
 #include <map>
 #include <unordered_map>
+#include <stack>
 
 ListNode* LinkedlistClss::reverseList(ListNode* head)
 {
@@ -334,4 +335,155 @@ ListNode* LinkedlistClss::addTwoNumbers(ListNode* l1, ListNode* l2)
     }
 
     return dummy_head_ptr;
+}
+
+void LinkedlistClss::TestLRUCache()
+{
+/*
+
+    LRUCache lRUCache(1);
+
+    lRUCache.put(2, 1);
+    lRUCache.get(2);
+    lRUCache.put(3, 2);
+    lRUCache.get(2);
+    lRUCache.get(3);
+ */
+
+   /* LRUCache lRUCache(2);
+
+    lRUCache.put(1, 1);
+    lRUCache.put(2, 2);
+    lRUCache.get(1);
+    lRUCache.put(3,3);
+    lRUCache.get(2);
+    lRUCache.put(4, 4);
+    lRUCache.get(1);
+    lRUCache.get(3);
+    lRUCache.get(4);*/
+
+    LRUCache lRUCache(2);
+
+    lRUCache.put(2,1);
+    lRUCache.put(1,1);
+    lRUCache.put(2,3);
+    lRUCache.put(4,1);
+
+    lRUCache.get(1); 
+    lRUCache.get(2);
+}
+
+ListNode* LinkedlistClss::mergeKLists(std::vector<ListNode*>& lists)
+{
+
+    if (lists.empty())
+    {
+        return nullptr;
+    }
+    else if (lists.size() == 1)
+    {
+        return lists[0];
+    }
+
+    while (lists.size() > 1) 
+    {
+        std::vector<ListNode*> mergedLists;
+
+        ListNode* dummy = nullptr;
+
+        for (size_t i = 0; i < lists.size(); i += 2)
+        {
+            if (i + 1 < lists.size())
+                dummy = mergeTwoLists(lists[i], lists[i + 1]);
+            else
+                dummy = lists[i];
+
+            mergedLists.push_back(dummy);
+        }
+
+        lists.assign(mergedLists.begin(), mergedLists.end());
+        mergedLists.clear();
+    }
+
+    return lists[0];
+}
+
+void del_node(ListNode* ptr_node_to_del, ListNode* prev_node, ListNode* head)
+{
+    if (ptr_node_to_del && ptr_node_to_del == head)
+    {
+        head = head->next;
+    }
+    else if(ptr_node_to_del && prev_node)
+    {
+        prev_node->next = ptr_node_to_del->next;
+    }
+}
+
+ListNode* LinkedlistClss::reverseKGroup(ListNode* head, int k)
+{
+    ListNode* curr_head = head;
+    ListNode* prev = nullptr;
+    ListNode* nxt_node_to_point = nullptr;
+
+    std::stack<ListNode*> node_stk;
+
+    bool have_we_reversed_k_nodes = false;
+    bool is_stack_contains_head_ptr = false;
+
+    while (curr_head)
+    {
+
+        node_stk.push(curr_head);
+
+        if (curr_head == head)
+        {
+            is_stack_contains_head_ptr = true;
+        }
+
+        if (node_stk.size() == k)
+        {
+            nxt_node_to_point = node_stk.top()->next;
+
+            if(prev)    
+                prev->next = node_stk.top();
+
+            while (!node_stk.empty())
+            {
+                ListNode* t_up = node_stk.top();
+                node_stk.pop();
+
+                if (is_stack_contains_head_ptr)
+                {
+                    head = t_up;
+                    is_stack_contains_head_ptr = false;
+                }
+
+                if(node_stk.size() != 0)
+                {
+                    t_up->next = node_stk.top();
+                }
+                else
+                {
+                    t_up->next = nxt_node_to_point;
+                    prev = t_up;
+                }
+            }
+
+            have_we_reversed_k_nodes = true;
+        }
+
+        if (have_we_reversed_k_nodes)
+        {
+            curr_head = nxt_node_to_point;
+            have_we_reversed_k_nodes = false;
+        }
+        else
+        {
+            curr_head = curr_head->next;
+        }
+
+    }
+
+    return head;
 }
