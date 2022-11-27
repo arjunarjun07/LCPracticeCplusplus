@@ -43,19 +43,19 @@ void Sorting::SelectionSort(std::vector<int>& list)
 
 void Sorting::InsertionSort(std::vector<int>& list)
 {
+	//https://www.youtube.com/watch?v=JU767SDMDvA
 	//similar to a sorting way of card deck in hand
 
-	int i, j, key;
-
-	for (int i = 1; i < list.size(); i++)
+	int key;
+	for (int curr = 0; curr< list.size(); curr++)
 	{
-		key = list[i];
-		j = i - 1;
+		key = list[curr];
+		int prev = curr - 1;
 
-		while (j >= 0 && list[j] > key)
+		while (prev >= 0 && list[prev] > key)
 		{
-			std::swap(list[j + 1], list[j]);
-			j--;
+			std::swap(list[prev], list[prev+1]);
+			prev--;
 		}
 	}
 }
@@ -97,9 +97,9 @@ void MergeSortedIntervals(std::vector<int>& v, int s, int m, int e)
 		++j;
 	}
 
+	int indx_count = 0;
 	for (int i = s; i <= e; ++i)
-		v[i] = temp[i - s]; 	//Not clear - Copying elements from temp to actual list
-
+		v[i] = temp[indx_count++];
 }
 
 void Sorting::MergeSort(std::vector<int>& list, int left_indx, int right_indx)

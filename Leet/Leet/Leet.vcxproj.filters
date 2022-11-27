@@ -92,6 +92,24 @@
     <Filter Include="LinkedList\Header">
       <UniqueIdentifier>{90b0963f-2f59-4491-901e-082cecdbe8cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="BinarySeacrh">
+      <UniqueIdentifier>{ee9261e4-61d0-4de5-9de2-ac8a54005ae8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BinarySeacrh\Header">
+      <UniqueIdentifier>{02c6ee81-f57d-4610-a23d-6b0eebd74397}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BinarySeacrh\Source">
+      <UniqueIdentifier>{5dfd59a9-d0c5-4962-9dd0-2b64acb63a25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heap">
+      <UniqueIdentifier>{de60a877-4833-413d-8ab7-484495df67bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heap\Header">
+      <UniqueIdentifier>{3067879a-95b9-47ff-a7c9-57788965f0e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heap\Source">
+      <UniqueIdentifier>{ca93ef7b-415d-44a3-8910-361c3cc100b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Leet.cpp">
@@ -133,6 +151,12 @@
     <ClCompile Include="LinkedListClss.cpp">
       <Filter>LinkedList\Source</Filter>
     </ClCompile>
+    <ClCompile Include="BSearch.cpp">
+      <Filter>BinarySeacrh\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Heap.cpp">
+      <Filter>Heap\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arrays.h">
@@ -167,6 +191,12 @@
     </ClInclude>
     <ClInclude Include="LinkedListClss.h">
       <Filter>LinkedList\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="BSearch.h">
+      <Filter>BinarySeacrh\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Heap.h">
+      <Filter>Heap\Header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
