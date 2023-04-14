@@ -110,6 +110,15 @@
     <Filter Include="Heap\Source">
       <UniqueIdentifier>{ca93ef7b-415d-44a3-8910-361c3cc100b7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Trees">
+      <UniqueIdentifier>{5835c997-73d5-4632-9a3c-9c36494fc957}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Trees\Header">
+      <UniqueIdentifier>{960d9aa9-b9b8-43ae-8870-5ba9da3068a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Trees\Source">
+      <UniqueIdentifier>{8a01e886-cd75-4aa6-99c4-a4a6d9befcb5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Leet.cpp">
@@ -157,6 +166,9 @@
     <ClCompile Include="Heap.cpp">
       <Filter>Heap\Source</Filter>
     </ClCompile>
+    <ClCompile Include="BinaryTree.cpp">
+      <Filter>Trees\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arrays.h">
@@ -197,6 +209,9 @@
     </ClInclude>
     <ClInclude Include="Heap.h">
       <Filter>Heap\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryTree.h">
+      <Filter>Trees\Header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -430,8 +430,6 @@ vector<int> Arrays::TwoSumModified(vector<int>& nums, int target)
 
     for (int i = 0; i < nums.size(); i++)
     {
-        int elem = nums[i];
-
         /*
             a + b = Target
             b = Target - a;
@@ -446,7 +444,9 @@ vector<int> Arrays::TwoSumModified(vector<int>& nums, int target)
             b = a - target
         */
 
-        int diff = target - nums[i];
+        int elem = nums[i];
+
+        int diff = target - elem;
 
         auto itr = num_map.find(diff);
 

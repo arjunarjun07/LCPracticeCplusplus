@@ -143,6 +143,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Arrays.cpp" />
+    <ClCompile Include="BinaryTree.cpp" />
     <ClCompile Include="BSearch.cpp" />
     <ClCompile Include="Heap.cpp" />
     <ClCompile Include="Leet.cpp" />
@@ -160,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arrays.h" />
+    <ClInclude Include="BinaryTree.h" />
     <ClInclude Include="BSearch.h" />
     <ClInclude Include="Heap.h" />
     <ClInclude Include="LinkedListClss.h" />
