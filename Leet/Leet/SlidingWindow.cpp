@@ -82,100 +82,132 @@ bool compandgetmax(std::pair<int, int> l, std::pair<int, int> r)
 	return res;
 }
 
-int SlidingWindow::characterReplacement(string s, int k)
+static int gethighestfreqofchar(std::unordered_map<char, int> alpha_map)
 {
-	int max_len = 0;
+	auto elem_with_high_freq = max_element(alpha_map.begin(), alpha_map.end(), [](const std::pair<char, int>& a, const std::pair<char, int>& b)->bool { return a.second < b.second; });
 
-	std::map<char, std::pair<int, int>> alpha_map = { {'a',{0,0} }, {'b',{0,0} }, {'c',{0,0} }, {'d',{0,0} },
-									  {'e',{0,0} }, {'f',{0,0} }, {'g',{0,0} }, {'h',{0,0} },
-									  {'i',{0,0} }, {'j',{0,0} }, {'k',{0,0} }, {'l',{0,0} },
-									  {'m',{0,0} }, {'n',{0,0} }, {'o',{0,0} }, {'p',{0,0} },
-									  {'q',{0,0} }, {'r',{0,0} }, {'s',{0,0} }, {'t',{0,0} },
-									  {'u',{0,0} }, {'v',{0,0} }, {'w',{0,0} }, {'x',{0,0} },
-									  {'y',{0,0} }, {'z',{0,0} }
-									};
+	return elem_with_high_freq->second;
+}
 
-	for (int i = 0; i < s.size(); i++)
+int SlidingWindow::characterReplacement(string str, int k)
+{
+	/*
+	"ABBB"
+
+	1. initiate L & R pointers to slide the string
+	2. result - will be the variable in which we will store the max len of str
+	3. move R pointer one by one & update the map & its freq
+	4. Make sure the current window is valid or not
 	{
-		int repeat_chr_count = 1;
-		int j = i+1;
+		[len of the substring - char with high freq = left over chars ]
 
-		while (j < s.size() && s[j] == s[i])
+		which needs to be replaced 'k' times.
+
+		We need to make sure the left over chars <= k - so we can replace it with char with high freq
+
+
+
+		if(left over chars > k)
 		{
-			repeat_chr_count++;
-			j++;
+			// The window length is not valid because we can't replace chars more than 'k'.
+			so we need to reduce the window size -1 by moving L pointer.
+			Untill we find a valid window
+
+			while(left over chars > k)
+			{
+				reduce the freq of the char at L - pointer
+				Move the L pointer by one
+			}
 		}
 
-		alpha_map[s[i]] = std::max(alpha_map[s[i]], std::pair<int, int>(i, repeat_chr_count), compandgetmax);
+		current_res = len (L,R) + 1 //+1 due to zero based index
+		result = max(result, current_res);
+
+	}
+*/
+
+	int result = 0;
+
+	std::unordered_map<char, int> alpha_map = { };
+
+	int L = 0, R = 0;
+
+	for (; R < str.length(); R++)
+	{
+		alpha_map[str[R]]++;
+
+		int len_of_substr = R - L + 1;
+		int char_with_high_freq = gethighestfreqofchar(alpha_map);
+
+		int left_over_chars = len_of_substr - char_with_high_freq;
+
+		if (left_over_chars > k)
+		{
+			while (left_over_chars > k)
+			{
+				--alpha_map[str[L]];
+				++L;
+			}
+		}
+
+		int curr_res = R - L + 1;
+		result = std::max(result, curr_res);
 	}
 
-	char chr_with_max_len = '\0';
-	int mlen = 0;
-	int index_of_chr = -1;
+	return result;
+	
+}
 
-	for (std::map<char, std::pair<int,int>>::iterator it = alpha_map.begin(); it!= alpha_map.end(); it++)
+int SlidingWindow::characterReplacement1(string s, int k)
+{
+	int len = s.length();
+
+	int max_str_len = 0;
+	int indx_of_first_non_matching_chr = -1;
+	int sub_k = k;
+
+	if (s.length() > 0)
 	{
-		if (mlen < it->second.second)
+		for (int i = 0; i < s.length(); i++)
 		{
-			chr_with_max_len = it->first;
-			mlen = it->second.second;
-			index_of_chr = it->second.first;
+			int len = 1;
+			bool first_non_matching_found = false;
+			int nxt_indx_of_i = i + 1;
+
+			int j = i + 1;
+			while (j < s.length())
+			{
+				if (s[i] == s[j])
+				{
+					++len;
+					max_str_len = std::max(len, max_str_len);
+				}
+				else if(s[i] != s[j])
+				{
+					if (first_non_matching_found == false)
+					{
+						first_non_matching_found = true;
+						nxt_indx_of_i = j;
+					}
+
+					if (sub_k-- != 0)
+					{
+						++len;
+						max_str_len = std::max(len, max_str_len);
+					}
+					else
+					{
+						break;
+					}
+				}
+
+				j++;
+			}
+
+			i = nxt_indx_of_i - 1; // -1 because i++ in for loop will act 
+			sub_k = k;
 		}
 	}
 
-	int substr_len_right = 0;
-	int index_to_start = index_of_chr + mlen;
-	int replace_chr_count = k;
-	int same_char_count_in_between_traverse = 0;
-
-	while (index_to_start < s.size() && replace_chr_count > 0)
-	{
-		if (s[index_to_start] != chr_with_max_len)
-		{
-			replace_chr_count--;
-		}
-		else
-		{
-			same_char_count_in_between_traverse++;
-		}
-
-		index_to_start++;
-	}
-
-	while (index_to_start < s.size() && s[index_to_start] == chr_with_max_len)
-	{
-		same_char_count_in_between_traverse++;
-		index_to_start++;
-	}
-
-	substr_len_right = mlen + same_char_count_in_between_traverse + (k - replace_chr_count);
-
-	int substr_len_left = 0;
-	index_to_start = index_of_chr - 1;
-	replace_chr_count = k;
-	same_char_count_in_between_traverse = 0;
-
-	while (index_to_start >= 0 && replace_chr_count > 0)
-	{
-		if (s[index_to_start] != chr_with_max_len)
-		{
-			replace_chr_count--;
-		}
-		else
-		{
-			same_char_count_in_between_traverse++;
-		}
-
-		index_to_start--;
-	}
-
-	while (index_to_start >= 0 && s[index_to_start] == chr_with_max_len)
-	{
-		same_char_count_in_between_traverse++;
-		index_to_start--;
-	}
-
-	substr_len_left = mlen + same_char_count_in_between_traverse + (k - replace_chr_count);
-
-	return std::max(substr_len_left, substr_len_right);
+	return max_str_len;
 }

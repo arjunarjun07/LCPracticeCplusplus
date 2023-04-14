@@ -12,4 +12,6 @@ public:
 	int lengthOfLongestSubstring(string s);
 
 	int characterReplacement(string s, int k);
+
+	int characterReplacement1(string s, int k);
 };
