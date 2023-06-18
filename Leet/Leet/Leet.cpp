@@ -25,6 +25,11 @@
 #include "BSearch.h"
 #include "Heap.h"
 #include "BinaryTree.h"
+#include <queue>
+#include <unordered_set>
+#include <ranges>
+#include <stop_token>
+#include <future>
 
 class Vertex
 {
@@ -235,9 +240,433 @@ void printmydat(const array<array<int, 3>, 3>& two_d_arr)
     }
 }
 
+/*
+def fun(self, chr:str, n:int):
+
+        if n >= 0:
+            print(chr, end=" ")
+            self.fun("(", n-1)
+            self.fun(")", n-1)
+            print("")
+        else:
+            return;
+
+s = CStack()
+s.fun("(", 3)
+*/
+
+void fun(string str, int n)
+{
+    if (n > 0)
+    {
+        str.append(str);
+        fun(str, n - 1);
+        fun(str, n - 1);
+    }
+    else
+    {
+        std::cout << str;
+        return;
+        std::cout << "\n";
+    }
+}
+
+void tfun(array<int, 6> & x)
+{
+    for (auto el : x)
+    {
+        std::cout << el << " ";
+    }
+}
+
+class Compare {
+public:
+    bool operator()(const std::map<int, string>& L, const std::map<int, string>& R)
+    {
+        
+    }
+};
+
+class Point
+{
+public:
+    Point(int x = 0, int y = 0);
+    ~Point();
+
+private:
+    int x;
+    int y;
+};
+
+Point::Point(int x, int y)
+{
+    std::cout << "Constructor"<<endl;
+    this->x = x;
+    this->y = y;
+}
+
+Point::~Point()
+{
+    std::cout << "Destructor" << endl;
+}
+
+void printcube(vector<vector<int>>& sudok, int rw, int col)
+{
+    //print a cube 3x3
+
+    for (int i = rw; i < rw + 3; i++)
+    {
+        for (int j = col; j < col + 3; j++)
+        {
+            std::cout << sudok[i][j] << " ";
+        }
+
+        std::cout << endl;
+    }
+}
+
+void myf(std::promise<int> & prom)
+{
+    int c = 0;
+
+    std::cout << "processing...";
+    
+    while (c++ < 10)
+    {
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+    }
+
+    std::cout << "Done";
+
+    prom.set_value(c);
+
+}
+
+
+//---------------------------------------------------------------------------
+
+class Entity
+{
+public:
+    virtual ~Entity()
+    {
+        cout << "\nEntity Destructor";
+    }
+
+    virtual void printName() = 0;
+
+protected:
+    Entity()
+    {
+        cout << "\nEntity Constructor";
+    }
+};
+
+class Shape : public Entity
+{
+public:
+    virtual int getArea() = 0;
+
+    int getLen()
+    {
+        return _len;
+    }
+
+    void setLen(int lenVal)
+    {
+        _len = lenVal;
+    }
+
+    int getWidth()
+    {
+        return _width;
+    }
+
+    void setWidth(int widthVal)
+    {
+        _width = widthVal;
+    }
+
+    virtual ~Shape()
+    {
+        cout << "\nShape Destructor";
+    }
+
+protected:
+
+    Shape(int l, int w) : _len(l), _width(w)
+    {
+        cout << "\nShape Constructor";
+    }
+
+    int _len;
+    int _width;
+};
+
+class Rect : public Shape
+{
+public:
+
+    Rect(int len, int width) : Shape(len, width)
+    {
+        cout << "\nRect Constructor";
+    }
+
+    void printName() override
+    {
+        cout << "\nThis is Rect";
+    }
+
+    int getArea() override
+    {
+        auto area = getLen() * getWidth();
+        cout << "\nRect GetArea() = "<<area;
+        return area;
+    }
+
+    ~Rect()
+    {
+        cout << "\nRect Destructor";
+    }
+
+};
+
+class comp
+{
+public:
+
+    bool operator()(const std::pair<int, std::string>& lhs, const std::pair<int, std::string>& rhs) const {
+        // Custom comparison based on the keys
+        return lhs.first < rhs.first; // Use ">" for min-heap and "<" for max-heap
+    }
+};
+
+
+class Graph
+{
+private:
+    map<int, bool> visited_map;
+
+    map<int, list<int>> adj_list;
+
+    queue<int> qForBFS;
+
+public:
+
+    void addEdge(int vertex, int w)
+    {
+        adj_list[vertex].push_back(w);
+    }
+
+    //Depth First 
+    void DFS(int vertex)
+    {
+        visited_map[vertex] = true;
+        std::cout << vertex << " ";
+
+        //for each adj nodes, do DFS
+
+        for (auto it = adj_list[vertex].begin(); it != adj_list[vertex].end(); it++)
+        {
+            bool isKeyFoundInVisitedMap = visited_map.contains(*it);
+
+            if (isKeyFoundInVisitedMap == false || (isKeyFoundInVisitedMap && visited_map[*it] == false))
+            {
+                DFS(*it);
+            }
+        }
+    }
+
+    //Breadth First
+    void BFSMain(int root_vertex)
+    {
+        //push first node into queue
+        qForBFS.push(root_vertex);
+        
+        //process all neighbour nodes
+        while (!qForBFS.empty())
+        {
+            int qfront = qForBFS.front();
+            visited_map[qfront] = true;
+
+            cout << qfront << " ";
+
+            qForBFS.pop();
+
+            for (auto it = adj_list[qfront].begin(); it != adj_list[qfront].end(); it++)
+            {
+                bool isKeyFoundInVisitedMap = visited_map.contains(*it);
+
+                if (isKeyFoundInVisitedMap == false || (isKeyFoundInVisitedMap && visited_map[*it] == false))
+                {
+                    qForBFS.push(*it);
+                }
+            }
+        }
+    }
+};
+
+class TreeN
+{
+public:
+
+    int data;
+    TreeN* left;
+    TreeN* right;
+
+
+    TreeN(int dat, TreeN* l, TreeN* r) : data(dat), left(l), right(r)
+    {
+
+	}
+};
+
+class CBinaryTree
+{
+public:
+
+    CBinaryTree()
+    {
+		root = nullptr;
+	}
+
+    ~CBinaryTree()
+    {
+        delete root;
+    }
+
+    void PreOrder(TreeN* root)
+    {
+		if (root == nullptr)
+			return;
+
+		cout << root->data << " ";
+		PreOrder(root->left);
+		PreOrder(root->right);
+	}
+
+    void Inorder(TreeN* root)
+    {
+		if (root == nullptr)
+			return;
+
+		Inorder(root->left);
+		cout << root->data << " ";
+		Inorder(root->right);
+	}
+
+    void Postorder(TreeN* root)
+	{
+        if (root == nullptr)
+            return;
+
+        Postorder(root->left);
+        Postorder(root->right);
+        cout << root->data << " ";
+    }
+
+    void BFS()
+    {
+        if (root == nullptr)
+            return;
+
+        queue<TreeN*> q;
+        q.push(root);
+
+        while (!q.empty())
+        {
+            auto front_node = q.front();
+            q.pop();
+
+            std::cout << front_node->data << " ";
+
+            if (front_node->left)
+                q.push(front_node->left);
+
+            if (front_node->right)
+                q.push(front_node->right);
+        }
+    }
+
+    bool isValidBST(TreeN* root) {
+        return helper(root, LONG_MIN, LONG_MAX);
+    }
+
+    bool helper(TreeN* root, long left, long right) {
+        if (!root)
+            return true;
+        if (root->data < right && root->data > left) {
+            return helper(root->left, left, root->data) && helper(root->right, root->data, right);
+        }
+        return false;
+    }
+
+private:
+    TreeN* root;
+};
+
 int main()
 {
-    std::cout << "Hello World!\n";
+    // Create a graph given in the above diagram
+    Graph g;
+    g.addEdge(0, 1);
+    g.addEdge(0, 2);
+    g.addEdge(1, 2);
+    g.addEdge(2, 0);
+    g.addEdge(2, 3);
+    g.addEdge(3, 3);
+
+    cout << "Following is Depth First Traversal"
+        " (starting from vertex 2) \n";
+
+    // Function call
+    g.BFSMain(2);
+
+
+    map<int, string> mp = { {1,"A"}, {2, "B"}, {3, "C"}};
+
+    std::priority_queue<pair<int, string>, vector<pair<int, string>>, comp> pq;
+
+    for (auto&[k,val] : mp)
+    {
+        pq.emplace(k, val);
+    }
+
+
+    auto rett = pq.top();
+
+
+    vector<vector<int>> sudokuCube = {  {5, 3, 0, 0, 7, 0, 0, 0, 0},
+                                        {6, 0, 0, 1, 9, 5, 0, 0, 0},
+                                        {0, 9, 8, 0, 0, 0, 0, 6, 0},
+                                        {8, 0, 0, 0, 6, 0, 0, 0, 3},
+                                        {4, 0, 0, 8, 0, 3, 0, 0, 1},
+                                        {7, 0, 0, 0, 2, 0, 0, 0, 6},
+                                        {0, 6, 0, 0, 0, 0, 2, 8, 0},
+                                        {0, 0, 0, 4, 1, 9, 0, 0, 5},
+                                        {0, 0, 0, 0, 8, 0, 0, 7, 9} 
+                                     };
+
+    for (size_t x = 0; x < 7; x+= 3)
+    {
+        for (int y = 0; y < 7; y+= 3)
+        {
+            printcube(sudokuCube, x, y);
+            std::cout << "---------------------------\n";
+        }
+
+        std::cout << endl;
+    }
+
+    std::promise<int> prom;
+    std::future<int> fut = prom.get_future();
+
+    std::thread th(myf, std::ref(prom));
+    th.detach();
+
+    auto ans = fut.get();
+
+    std::cout << "mystr";
 
     Arrays arr_ins;
     Recursion rec_ins;    
@@ -289,8 +718,10 @@ int main()
     //v1 still exists
 
     vector<vector<int>> nums{ {1, 3 }, { -2, 2 }, { 2, -2 }};
+
+    vector<int> xnums {3,4,1,2,6,7};
     
-    //mhp.MaxifyHeap(nums, 0);
+    //mhp.MaxifyHeap(xnums, 0);
 
     //mhp.kClosest(nums, 2);
 

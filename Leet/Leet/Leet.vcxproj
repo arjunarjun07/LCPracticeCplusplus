@@ -35,20 +35,20 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -89,7 +89,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -145,6 +145,8 @@
     <ClCompile Include="Arrays.cpp" />
     <ClCompile Include="BinaryTree.cpp" />
     <ClCompile Include="BSearch.cpp" />
+    <ClCompile Include="CGraph.cpp" />
+    <ClCompile Include="CUtils.cpp" />
     <ClCompile Include="Heap.cpp" />
     <ClCompile Include="Leet.cpp" />
     <ClCompile Include="LinkedListClss.cpp" />
@@ -163,6 +165,8 @@
     <ClInclude Include="Arrays.h" />
     <ClInclude Include="BinaryTree.h" />
     <ClInclude Include="BSearch.h" />
+    <ClInclude Include="CGraph.h" />
+    <ClInclude Include="CUtils.h" />
     <ClInclude Include="Heap.h" />
     <ClInclude Include="LinkedListClss.h" />
     <ClInclude Include="Queue.h" />

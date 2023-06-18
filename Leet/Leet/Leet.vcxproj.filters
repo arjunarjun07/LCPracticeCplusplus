@@ -119,6 +119,24 @@
     <Filter Include="Trees\Source">
       <UniqueIdentifier>{8a01e886-cd75-4aa6-99c4-a4a6d9befcb5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{acb2d2f6-afd8-4f8b-8af6-301be6a674a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\Header">
+      <UniqueIdentifier>{54099ab9-3c0e-4907-9f3d-abb0fd403a65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\Source">
+      <UniqueIdentifier>{805451ff-77be-42db-9e13-616fa426d514}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graph">
+      <UniqueIdentifier>{eb23ab75-d93d-40da-887a-f80ac63ef83e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graph\Header">
+      <UniqueIdentifier>{2a5f26e8-cd92-41cf-9430-6ac0ac6510bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graph\Source">
+      <UniqueIdentifier>{ea2c1e21-9f84-4bf4-b8c3-7a91b8b34f0f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Leet.cpp">
@@ -169,6 +187,12 @@
     <ClCompile Include="BinaryTree.cpp">
       <Filter>Trees\Source</Filter>
     </ClCompile>
+    <ClCompile Include="CUtils.cpp">
+      <Filter>Utils\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="CGraph.cpp">
+      <Filter>Graph\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arrays.h">
@@ -212,6 +236,12 @@
     </ClInclude>
     <ClInclude Include="BinaryTree.h">
       <Filter>Trees\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CUtils.h">
+      <Filter>Utils\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CGraph.h">
+      <Filter>Graph\Header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
