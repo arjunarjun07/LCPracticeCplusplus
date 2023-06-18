@@ -30,6 +30,7 @@
 #include <ranges>
 #include <stop_token>
 #include <future>
+#include "CGraph.h"
 
 class Vertex
 {
@@ -441,71 +442,6 @@ public:
     }
 };
 
-
-class Graph
-{
-private:
-    map<int, bool> visited_map;
-
-    map<int, list<int>> adj_list;
-
-    queue<int> qForBFS;
-
-public:
-
-    void addEdge(int vertex, int w)
-    {
-        adj_list[vertex].push_back(w);
-    }
-
-    //Depth First 
-    void DFS(int vertex)
-    {
-        visited_map[vertex] = true;
-        std::cout << vertex << " ";
-
-        //for each adj nodes, do DFS
-
-        for (auto it = adj_list[vertex].begin(); it != adj_list[vertex].end(); it++)
-        {
-            bool isKeyFoundInVisitedMap = visited_map.contains(*it);
-
-            if (isKeyFoundInVisitedMap == false || (isKeyFoundInVisitedMap && visited_map[*it] == false))
-            {
-                DFS(*it);
-            }
-        }
-    }
-
-    //Breadth First
-    void BFSMain(int root_vertex)
-    {
-        //push first node into queue
-        qForBFS.push(root_vertex);
-        
-        //process all neighbour nodes
-        while (!qForBFS.empty())
-        {
-            int qfront = qForBFS.front();
-            visited_map[qfront] = true;
-
-            cout << qfront << " ";
-
-            qForBFS.pop();
-
-            for (auto it = adj_list[qfront].begin(); it != adj_list[qfront].end(); it++)
-            {
-                bool isKeyFoundInVisitedMap = visited_map.contains(*it);
-
-                if (isKeyFoundInVisitedMap == false || (isKeyFoundInVisitedMap && visited_map[*it] == false))
-                {
-                    qForBFS.push(*it);
-                }
-            }
-        }
-    }
-};
-
 class TreeN
 {
 public:
@@ -607,14 +543,29 @@ private:
 
 int main()
 {
-    // Create a graph given in the above diagram
+    
+    //https://www.google.com/imgres?imgurl=https%3A%2F%2Fi.ytimg.com%2Fvi%2FFrLWd1tJ_Wc%2Fmaxresdefault.jpg&tbnid=LNPbwgMvGNDt7M&vet=12ahUKEwiw8Ynqp83_AhW3itgFHTbWAWIQMygCegUIARDkAQ..i&imgrefurl=https%3A%2F%2Fm.youtube.com%2Fwatch%3Fv%3DFrLWd1tJ_Wc&docid=zlfm8TTQomG_FM&w=1280&h=720&q=Bellman%20Ford%27s%20Algorithm&ved=2ahUKEwiw8Ynqp83_AhW3itgFHTbWAWIQMygCegUIARDkAQ 
+
+    //BellManFord Algorithm Testing image
+
     Graph g;
-    g.addEdge(0, 1);
-    g.addEdge(0, 2);
-    g.addEdge(1, 2);
-    g.addEdge(2, 0);
-    g.addEdge(2, 3);
-    g.addEdge(3, 3);
+
+    g.addEdgeWeighted(0, 1, 1);
+    g.addEdgeWeighted(0, 2, 4);
+
+    g.addEdgeWeighted(1, 2, -2);
+    g.addEdgeWeighted(1, 3, 2);
+    g.addEdgeWeighted(1, 4, 7);
+
+    g.addEdgeWeighted(2, 3, 3);
+
+    g.addEdgeWeighted(3, 4, 4);
+
+    g.addEdgeWeighted(4, 5, 7);
+
+    g.addEdgeWeighted(5, 3, -3);
+
+    auto ret = g.BellManFord(0);
 
     cout << "Following is Depth First Traversal"
         " (starting from vertex 2) \n";
