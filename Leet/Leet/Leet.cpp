@@ -541,6 +541,20 @@ private:
     TreeN* root;
 };
 
+mutex m;
+condition_variable cv;
+
+#define COUNT 10
+
+void spinloop()
+{
+    int ctr = 100;
+    while (ctr--)
+    {
+        cout << "Enter: "<< ctr;
+    }
+}
+
 int main()
 {
     
@@ -550,22 +564,22 @@ int main()
 
     Graph g;
 
-    g.addEdgeWeighted(0, 1, 1);
-    g.addEdgeWeighted(0, 2, 4);
+    g.addEdgeWeighted(0, 1, 7);
+    g.addEdgeWeighted(0, 2, 12);
 
-    g.addEdgeWeighted(1, 2, -2);
-    g.addEdgeWeighted(1, 3, 2);
-    g.addEdgeWeighted(1, 4, 7);
+    g.addEdgeWeighted(1, 2, 2);
+    g.addEdgeWeighted(1, 3, 9);
 
-    g.addEdgeWeighted(2, 3, 3);
+    g.addEdgeWeighted(2, 4, 10);
 
-    g.addEdgeWeighted(3, 4, 4);
+    g.addEdgeWeighted(3, 5, 1);
 
-    g.addEdgeWeighted(4, 5, 7);
+    g.addEdgeWeighted(4, 3, 4);
+    g.addEdgeWeighted(4, 5, 5);
 
-    g.addEdgeWeighted(5, 3, -3);
+    g.addEdgeWeighted(5, -1, -1);
 
-    auto ret = g.BellManFord(0);
+    auto ret = g.Dijkstra(0);
 
     cout << "Following is Depth First Traversal"
         " (starting from vertex 2) \n";
@@ -692,6 +706,14 @@ int main()
     root = bst.Insert(root, 9);
 
     auto srch = bst.Delete(root, 5);
+
+    int numfromUser = 0;
+
+    cout << "Enter a number: ";
+
+    std::cin >> numfromUser;
+
+    spinloop();
 
     return 0;
 }

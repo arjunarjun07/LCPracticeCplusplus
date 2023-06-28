@@ -31,4 +31,6 @@ public:
     void BFSMain(int root_vertex);
 
     vector<int> BellManFord(int root_vertex);
+
+    vector<int> Dijkstra(int root_vertex);
 };
